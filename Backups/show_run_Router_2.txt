@@ -1,0 +1,176 @@
+Building configuration...
+
+Current configuration : 3556 bytes
+!
+! Last configuration change at 19:29:35 UTC Sat Jul 2 2022 by cisco
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname Router_2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name example.netacad.com
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-4081131541
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4081131541
+ revocation-check none
+ rsakeypair TP-self-signed-4081131541
+!
+!
+crypto pki certificate chain TP-self-signed-4081131541
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34303831 31333135 3431301E 170D3232 30373032 31393030 
+  31355A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 30383131 
+  33313534 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100A2F2 C97022A2 62F1BDD9 F36B93B3 9062FAEF AE354450 AFA1D8AF 
+  0577A5F7 26564B28 69C0BA54 AE5D6724 6ADBE07F AAFCDDD5 526CFF9B 9AC660C3 
+  0BF0653B FAAD9BD9 699FB814 609B95AF E36BF911 64387A58 13D14605 73964B41 
+  2B6D89AA 03497C65 5F7408B1 96B2EFE8 D77E82E8 2C1F8764 57187975 6B5962CD 
+  9E31EE83 7890ADB0 591BC5F2 8AE08D10 584421ED DE0C8EC7 266D7D58 21ADE37A 
+  ECCEB344 CE19A7AE 618D7AA8 A16A7C9A 918B26C7 74515D63 59FA832C 2D95376B 
+  8B6E0F57 B54E573E 9DCBDDB2 02CB07F1 ED55819F E61EF363 995D724A AEA19A07 
+  0C9E2421 FC31EDA3 461A28D3 73BF3C54 B749B935 6DBFA1B2 C03CA5F4 17EC61EC 
+  A8018F6F 60C50203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 1413A7FB 67355ADB F50D9506 20E20F05 6B3C4F8A 
+  99301D06 03551D0E 04160414 13A7FB67 355ADBF5 0D950620 E20F056B 3C4F8A99 
+  300D0609 2A864886 F70D0101 05050003 82010100 0662A0FD 45DCD82F 7DC0924A 
+  2D258839 BBDAE016 B6B35989 103CFFF0 449A64E8 C9135103 35A3B882 A221A913 
+  3F720BFD 0213079E 24053C34 B83E94E7 5CD0FFC6 304B3499 EB441214 CB25B11A 
+  254BDCB7 90965020 B8BD6721 4E6371FC 6B3A35D2 83CE69D0 13591DC8 CA5387A9 
+  C3282FD1 423A44DB 3F73FA8E 2AF239B9 15309CEA 181A53F9 75D8FA3D EA3AB9FC 
+  CFAB3045 B930F67F 0C07ABE3 36C94735 54901294 30252934 4F29C7AE 68F165C6 
+  53A9D86B 5A3A01DF A8361F8A 7EA40E0E 638FD549 541DAD96 69F180E6 23B76131 
+  13C0AD32 74D5FB9B A3A60C42 0A2BC745 583AE9E7 8DA374BD 8F5DB958 9CFEC737 
+  18364C72 13719BEE 1E50A477 5A864840 BFCC1D1E
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9N9ZQDZ915K
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username cisco privilege 15 password 0 cisco123!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ description IPv6 ADDRESS
+ ip address dhcp
+ negotiation auto
+ ipv6 address FE80::1:1 link-local
+ ipv6 address 2001:DB8:ACAD:1::2/64
+ no mop enabled
+ no mop sysid
+!
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner motd ^CConfig_Router_CSR1kv_Router_2^C
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+end

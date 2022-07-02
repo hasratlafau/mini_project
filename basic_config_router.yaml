@@ -1,0 +1,43 @@
+---
+  - name: Basic Config Router
+    hosts: Routers
+    gather_facts: false
+    connection: local
+    tasks:
+      - name : Global config setting
+        ios_config:
+          lines:
+            - ipv6 unicast-routing
+      - name : config banner motd
+        ios_config:
+          lines:
+            - banner motd "Config_Router_CSR1kv_{{ inventory_hostname }}"
+
+  - name: IPv6 Router_1
+    hosts: Router_1
+    gather_facts: false
+    connection: local
+    tasks:
+      - name: SET IPv6 ADDRESS
+        ios_config:
+          parents: "interface GigabitEthernet1"
+          lines:
+            - description IPv6 ADDRESS
+            - ipv6 address 2001:DB8:ACAD:1::1/64
+            - ipv6 address FE80::1:1 link-local
+
+  - name: IPv6 Router_2
+    hosts: Router_2
+    gather_facts: false
+    connection: local
+    tasks:
+      - name: SET IPv6 ADDRESS
+        ios_config:
+          parents: "interface GigabitEthernet1"
+          lines:
+            - description IPv6 ADDRESS
+            - ipv6 address 2001:DB8:ACAD:1::2/64
+            - ipv6 address FE80::1:1 link-local  
+
+
+      

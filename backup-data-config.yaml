@@ -1,10 +1,9 @@
 ---
-- name: AUTOMATIC BACKUP OF RUNNING-CONFIG
+- name: DATA CONFIG ROUTERS AUTOMATIC BACKUP 
   hosts: Routers
   gather_facts: false
   connection: local
   tasks:
-
   - name: DISPLAYING THE RUNNING-CONFIG
     ios_command:
       commands:
@@ -14,13 +13,4 @@
     copy:
       content: "{{ config.stdout[0] }}"
       dest: "Backups/show_run_{{ inventory_hostname }}.txt"
-
-  - name: IP Interface Backup
-    ios_command:
-      commands:
-        - show ip int brief
-      register: Interface
-  - name: save output to ./Backup/
-    copy:
-      content: "{{ Interface.stdout[0] }}"
-      dest: "Backups/Interface_Backup_{{ inventory_hostname }}.txt"
+  
