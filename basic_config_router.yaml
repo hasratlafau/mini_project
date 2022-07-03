@@ -12,7 +12,6 @@
         ios_config:
           lines:
             - banner motd "Config_Router_CSR1kv_{{ inventory_hostname }}"
-
   - name: IPv6 Router_1
     hosts: Router_1
     gather_facts: false
@@ -25,7 +24,6 @@
             - description IPv6 ADDRESS
             - ipv6 address 2001:DB8:ACAD:1::1/64
             - ipv6 address FE80::1:1 link-local
-
   - name: IPv6 Router_2
     hosts: Router_2
     gather_facts: false
